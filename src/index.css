@@ -8,6 +8,7 @@ body {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
+  background-color: #FFFFFF;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -33,22 +34,32 @@ header {
   align-items: flex-end;
   text-align: right;
 }
-.nav--pages > a {
+.nav--pages > li {
   margin: 10px;
-  text-decoration: none;
-  color: #FF6060;
+  list-style: none;
   font-size: 12px;
   line-height: 142.6%;
+  cursor: pointer;
+}
+.nav--link {
+  color: #FF6060;
+}
+
+.nav--pages > li:hover {
+  text-decoration: underline;
+  text-underline-offset: 10px;
 }
 
 .background--image{
-  height: 130px;
-  width: 100%;
   background-image: url("/images/head-background.webp");
   background-repeat: no-repeat, no-repeat;
   background-position: center, center; 
   object-fit: cover;
+  background-size: cover;
+  height: 111px;
+  width: 100%;
   border-radius: 15px;
+  
 }
 .background--image h2 {
   position: absolute;
@@ -56,7 +67,7 @@ header {
   right: 32.53%;
   top: 14.04%;
   bottom: 80.05%;
-  color: #FFFFFF;
+  color: #343434;
   font-size: 24px;
   line-height: 100%;
 }
@@ -67,7 +78,7 @@ header {
   display: flex;
   justify-content: center;
   flex-flow: column wrap;
-  margin: 20px;
+  margin: 40px 20px;
   background: #F7F7F7;
   border-radius: 25px;
   
@@ -78,8 +89,9 @@ header {
   overflow: hidden;
   padding: 20px 0;
   
-  
-  
+}
+a {
+  text-decoration: none;
 }
 .logement--img {
   height: 300px;
@@ -114,30 +126,39 @@ header {
 
 /* Version tablette */
 @media only screen and (min-width: 768px){
-
-
-  .nav--pages > a {
+  .nav--pages > li {
     margin-left: 60px;
     font-size: 20px;
+  }
+  .background--image {
+    height: 250px;
+  }
+  .background--image h2 {
+    left: 25.9%;
+    right: 25.14%;
+    top: 25.32%;
+    bottom: 69.04%;
+    text-align: center;
   }
 }
 
 /* Version desktop */
 @media only screen and (min-width: 1025px){
-  
-
-  .nav--pages > a {
+  body {
+    background: #E5E5E5;
+  }
+  header {
+    margin: 20px 20px 50px 20px;
+  }
+  .nav--pages > li {
     margin-left: 60px;
     font-size: 20px;
   }
   .head-background {
-    margin: 0;
-    width: 100%;
+    margin: 20px;
   }
   .background--image {
-   width: 100%;
-    border: 10px solid black;
-    border-radius: 25px;
+    height: 223px;
   }
   .background--image h2 {
     left: 25.9%;
@@ -158,7 +179,5 @@ header {
     width: 350px;
     overflow: hidden;
     padding: 20px;  
-  }
-  
-  
+  }  
 }

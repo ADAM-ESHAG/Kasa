@@ -1,27 +1,20 @@
 import { useState } from 'react'
-import Navbar from '../components/Navbar'
-import MainContent from '../components/MainContent'
-import Footer from '../components/Footer'
-import data from '../data'
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from '../components/Home'
+import About from '../components/About';
+import Logement from '../components/Logement';
 
 function App() {
-  const myData = data.map(item => {
-    return (
-      <MainContent 
-          key={item.id}
-          item={item}
-      />
-    )
-  })
   return (
-    <div className='container'>
-      <Navbar />
-      <main className="mainContent">
-        {myData}
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route exct path='/' element={<Home />}></Route>
+          <Route exct path='/About' element={<About />}></Route>
+          <Route exct path='/Logement' element={<Logement />}></Route>
+        </Routes>
+      </Router>
+    </>
   )
 }
 
