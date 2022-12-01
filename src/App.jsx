@@ -11,6 +11,7 @@ function App() {
         <Routes>
           <Route exct path='/' element={<Home />}></Route>
           <Route exct path='/About' element={<About />}></Route>
+          <Route exct path='/Logement/About' element={<About />}></Route>
           <Route exct path='/Logement' element={<Logement />}></Route>
         </Routes>
       </Router>
