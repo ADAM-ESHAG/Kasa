@@ -116,6 +116,73 @@ a {
   object-fit: cover;
   background-size: cover;
 }
+.titre {
+  margin: 20px;
+}
+.titre h2, .titre p {
+  display: flex;
+  align-items: flex-end;
+  font-size: 18px;
+  line-height: 142.6%;
+  color: #FF6060;
+}
+.tags {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: left;
+  list-style: none;
+}
+.tag {
+  font-size: 10px;
+  line-height: 142.6%;
+  text-align: center;
+  padding: 5px 15px;
+  margin: 5px;
+  border-radius: 10px;
+  color: #FFFFFF;
+  background-color: #FF6060;;
+} 
+
+.host {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.host--name {
+  display: flex;
+  align-items: center;
+}
+.host--name h6 {
+  font-size: 12px;
+  line-height: 142.6%;
+  text-align: right;
+  color: #FF6060;
+}
+.host--name img {
+  margin-left: 10px;
+  width: 50px;
+  object-fit: cover;
+  background-size: cover;
+  border-radius: 50%;
+}
+.description--equipments {
+  margin: 20px;
+}
+.description {
+  background: #F7F7F7;
+  border-radius: 5px;
+}
+.chevron {
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px;
+  color: #FFFFFF;
+  background: #FF6060;
+}
 
 
 
