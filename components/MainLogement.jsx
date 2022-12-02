@@ -51,26 +51,15 @@ export default function MainLogement(props) {
         const equipments= props.item.equipments
         const equipment = equipments.map(item => {
             return (
-                <li key={item}>{item}</li>
+                <span key={item}>{item}</span>
             )
         })
 
-        /***-----Function showDescription------***/
-        // function ShowDescription() {
-        //     const [showParagraphe, setShowParagraphe] = React.useState(true);
-        //     const onClick = () => setShowParagraphe(false);
-        //     const Show = <div>
-        //         <div className='chevron'>
-        //             <p>Description</p> <Chevron direction={'down'} />
-        //         </div>
-        //         <p>{props.item.description}</p>
-        //     </div>;
-        //     return (
-        //         <div>
-        //             {showParagraphe ? <Show /> : null}
-        //         </div>
-        //     );
-        // }
+        
+        const [showParagraphe, setShowParagraphe] = React.useState(false)
+        const [showEquipements, setShowEquipements] = React.useState(false)
+        const [showChevron, setShowChevron] = React.useState(false)
+        const [showChevronEquipement, setShowChevronEquipement ] = React.useState(false)
         
         return (
                 <>
@@ -99,13 +88,24 @@ export default function MainLogement(props) {
                             </div>
                         </div>
                         <div className='description--equipments'>
-                            <div className="description">
-                                {/* <ShowDescription /> */}
+                            <div className="description" onClick={() => setShowChevron(!showChevron)}>
+                                <div onClick={() => setShowParagraphe(!showParagraphe)}>
+                                    <div className='chevron'>
+                                        <p>Description</p> {showChevron && <Chevron direction={'down'} />}
+                                        {!showChevron && <Chevron direction={'up'} />}
+                                    </div>
+                                    {showParagraphe && <p className='DescriptionParagraphe'>{props.item.description}</p>}
+                                </div>   
                             </div>
                             
-                            <div className='equipments'>
-                                Equipements <Chevron direction={'up'}/>
-                                <ul>{equipment}</ul>
+                            <div className='equipments' onClick={() => setShowChevronEquipement(!showChevronEquipement)} >
+                                <div onClick={() => setShowEquipements(!showEquipements)}>
+                                    <div className="chevronEquipement">
+                                        <p>Equipements</p> {showChevronEquipement && <Chevron direction={'down'} />}
+                                        {!showChevronEquipement && <Chevron direction={'up'} />}
+                                    </div>
+                                    {showEquipements && <div className='equipe'>{equipment}</div>}
+                                </div>
                             </div>
                         </div>
 

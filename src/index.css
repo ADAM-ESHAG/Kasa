@@ -170,11 +170,12 @@ a {
 .description--equipments {
   margin: 20px;
 }
-.description {
+.description, .equipments {
+  margin: 20px 0;
   background: #F7F7F7;
-  border-radius: 5px;
+  border-radius: 15px;
 }
-.chevron {
+.chevron, .chevronEquipement {
   padding: 5px 10px;
   display: flex;
   justify-content: space-between;
@@ -184,8 +185,21 @@ a {
   background: #FF6060;
 }
 
+.chevron p, .chevronEquipement p {
+  font-size: 18px;
+  line-height: 142.6%;
+}
 
-
+.equipe, .DescriptionParagraphe {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 142.6%;
+  color: #FF6060;
+  
+}
 /* FIN CSS PAGE LOGEMENT */
 
 /*-----Footer----*/
