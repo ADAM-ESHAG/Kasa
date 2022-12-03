@@ -55,6 +55,18 @@ export default function MainLogement(props) {
             )
         })
 
+        const rating = props.item.rating
+        /****Styles for stars****/
+        const styleStars = {
+            size:"2xl",
+            backgroundColor: "FF6060", 
+            color: "FF6060",
+            clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)"
+        }
+        const noStyleStars = {
+            size:"lg",
+            color:"#A9A9A9"
+        }
         
         const [showParagraphe, setShowParagraphe] = React.useState(false)
         const [showEquipements, setShowEquipements] = React.useState(false)
@@ -67,44 +79,50 @@ export default function MainLogement(props) {
                        {image}
                     </Carousel>
                     <div className='informations'>
-                        <div className='titre'>
-                            <h2>{props.item.title}</h2>
-                            <p>{props.item.location}</p>
-                            <div className='tags'>
-                                {tag}
+                        <div className='infos'>
+                            <div className='titre'>
+                                <h2>{props.item.title}</h2>
+                                <p>{props.item.location}</p>
+                                <div className='tags'>
+                                    {tag}
+                                </div>
                             </div>
-                        </div>
-                        <div className='host'>
-                            <div className='host--stars'>
-                                <span><FontAwesomeIcon icon={faStar} /></span>
-                                <span><FontAwesomeIcon icon={faStar} /></span>
-                                <span><FontAwesomeIcon icon={faStar} /></span>
-                                <span><FontAwesomeIcon icon={faStar} /></span>
-                                <span><FontAwesomeIcon icon={faStar} /></span>
-                            </div>
-                            <div className='host--name'>
-                                <h6>{props.item.host.name}</h6>
-                                <img src={props.item.host.picture} alt="Hot-Picture" />
+                            <div className='host'>
+                                <div className='host--stars'>
+                                    {rating >= 1 ? <span><FontAwesomeIcon icon={faStar} size="lg" style={styleStars}/></span> : <span><FontAwesomeIcon icon={faStar} style={noStyleStars} /></span>}
+                                    {rating >= 2 ? <span><FontAwesomeIcon icon={faStar} size="lg" style={styleStars}/></span> : <span><FontAwesomeIcon icon={faStar} style={noStyleStars} /></span>}
+                                    {rating >= 3 ? <span><FontAwesomeIcon icon={faStar} size="lg" style={styleStars}/></span> : <span><FontAwesomeIcon icon={faStar} style={noStyleStars} /></span>}
+                                    {rating >= 4 ? <span><FontAwesomeIcon icon={faStar} size="lg" style={styleStars}/></span> : <span><FontAwesomeIcon icon={faStar} style={noStyleStars} /></span>}
+                                    {rating == 5 ? <span><FontAwesomeIcon icon={faStar} size="lg" style={styleStars}/></span> : <span><FontAwesomeIcon icon={faStar} style={noStyleStars}/></span>}
+                                </div>
+                                <div className='host--name'>
+                                    <h6>{props.item.host.name}</h6>
+                                    <img src={props.item.host.picture} alt="Hot-Picture" />
+                                </div>
                             </div>
                         </div>
                         <div className='description--equipments'>
-                            <div className="description" onClick={() => setShowChevron(!showChevron)}>
-                                <div onClick={() => setShowParagraphe(!showParagraphe)}>
-                                    <div className='chevron'>
-                                        <p>Description</p> {showChevron && <Chevron direction={'down'} />}
-                                        {!showChevron && <Chevron direction={'up'} />}
-                                    </div>
-                                    {showParagraphe && <p className='DescriptionParagraphe'>{props.item.description}</p>}
-                                </div>   
+                            <div className='desc'>
+                                <div className="description" onClick={() => setShowChevron(!showChevron)}>
+                                    <div onClick={() => setShowParagraphe(!showParagraphe)}>
+                                        <div className='chevron'>
+                                            <p>Description</p> {showChevron && <Chevron direction={'down'} />}
+                                            {!showChevron && <Chevron direction={'up'} />}
+                                        </div>
+                                        {showParagraphe && <p className='DescriptionParagraphe'>{props.item.description}</p>}
+                                    </div>   
+                                </div>
                             </div>
                             
-                            <div className='equipments' onClick={() => setShowChevronEquipement(!showChevronEquipement)} >
-                                <div onClick={() => setShowEquipements(!showEquipements)}>
-                                    <div className="chevronEquipement">
-                                        <p>Equipements</p> {showChevronEquipement && <Chevron direction={'down'} />}
-                                        {!showChevronEquipement && <Chevron direction={'up'} />}
+                            <div className='equi'>
+                                <div className='equipments' onClick={() => setShowChevronEquipement(!showChevronEquipement)} >
+                                    <div onClick={() => setShowEquipements(!showEquipements)}>
+                                        <div className="chevronEquipement">
+                                            <p>Equipements</p> {showChevronEquipement && <Chevron direction={'down'} />}
+                                            {!showChevronEquipement && <Chevron direction={'up'} />}
+                                        </div>
+                                        {showEquipements && <div className='equipe'>{equipment}</div>}
                                     </div>
-                                    {showEquipements && <div className='equipe'>{equipment}</div>}
                                 </div>
                             </div>
                         </div>

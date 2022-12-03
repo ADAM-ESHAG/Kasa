@@ -17,10 +17,9 @@ export default function Home() {
     return (
         <div className="container">
             <Navbar />
-            <div className='head-background'>
-                <div className='background--image'>
-                    <h2>Chez vous, partout et ailleurs</h2>
-                </div>
+            <div className='background--image'>
+                <img src="/images/head-background.webp" alt="image/webp" />
+                <h2>Chez vous, partout et ailleurs</h2>
             </div>
             <main className="mainContent">
                 {myData}
