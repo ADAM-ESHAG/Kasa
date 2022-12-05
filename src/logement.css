@@ -17,18 +17,59 @@ html, body {
 
 /* DEBUT CSS PAGE LOGEMENT */
 /*-----MainLogement-----*/
-.carousel-root{
+#slider {
+  margin: 0 20px;
+  
+}
+.slide {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0.5;
+  transition:  1.5s ease;
+  
+}
+.slide.active {
+  overflow: hidden;
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1);
+}
+.slide img {
+  width: 750px;
+  height: 255px;
+  border-radius: 15px;
+  object-fit: cover;
+  background-size: cover;
+  overflow: hidden;
+  
+}
+
+.right-arrow {
+  position: absolute;
+  top:  25%;
+  right: 20px;
+  font-size: 2rem;
+  color: #FFFFFF;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+.left-arrow {
+  position: absolute;
+  top:  25%;
+  left: 20px;
+  font-size: 2rem;
+  color: #FFFFFF;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}  
+
+  .informations {
     margin: 20px;
   }
-  .carousel--image img {
-    height: 300px;
-    width: 400px;
-    object-fit: cover;
-    background-size: cover;
-  }
-  .titre {
-    margin: 20px;
-  }
+  
   .titre h2, .titre p {
     display: flex;
     align-items: flex-end;
@@ -56,7 +97,7 @@ html, body {
   } 
   
   .host {
-    margin: 20px;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -80,9 +121,7 @@ html, body {
     background-size: cover;
     border-radius: 50%;
   }
-  .description--equipments {
-    margin: 20px;
-  }
+  
   .description, .equipments {
     margin: 20px 0;
     background: #F7F7F7;
@@ -119,13 +158,53 @@ html, body {
 
   /* Version tablette */
 @media only screen and (min-width: 768px){
+  .informations {
+    margin: 0 50px;
+  }
+  #slider {
+    margin: 0 50px;
+    
+  }
+  
+  .slide img {
+    width: 900px;
+    height: 400px;
+    
+  }
+  .right-arrow {
+    top: 35%;
+    right: 10%;
+  }
+  .left-arrow {
+    top: 35%;
+    left: 10%;
+  }
 
 }
 
 /* Version desktop */
 @media only screen and (min-width: 1025px){
-    .carousel--image img {
-        height: 600px;
+    
+    #slider {
+      margin: 0 100px;  
+    }
+    .slide img {
+      width: 1300px;
+      height: 450px;
+      
+    }
+    .right-arrow {
+      font-size: 3rem;
+      top: 40%;
+      right: 10%;
+    }
+    .left-arrow {
+      font-size: 3rem;
+      top: 40%;
+      left: 10%;
+    }
+    .informations {
+      margin: 20px 100px;
     }
     .infos {
         display: flex;

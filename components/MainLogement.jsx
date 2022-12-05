@@ -1,6 +1,7 @@
 //-----MainLogement----//
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import { Link } from 'react-router-dom'
 import { useSearchParams } from "react-router-dom";
 import { useState } from 'react';
@@ -14,7 +15,8 @@ import Chevron from 'react-chevron'
 
 //----Import FontAwesomeIcon from React---//
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-regular-svg-icons'
+import { faStar} from '@fortawesome/free-regular-svg-icons'
+import { faChevronUp, faChevronDown, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function MainLogement(props) {
@@ -27,16 +29,23 @@ export default function MainLogement(props) {
     cliqué ? Renoie-moi et affiche ces proprieté---****/
     const propsItemId = props.item.id;
     if(propsItemId === logementId){
-        const propsItemPictures = props.item.pictures;
 
         /*****---- Maper les images de (props.item.pictures)----******/
-        const image = propsItemPictures.map(item => {
-            return (
-                <div key={item} className='carousel--image'>
-                    <img src={item} alt="pic" />
-                </div>
-            )
-        })
+        let slidePictures = props.item.pictures;
+
+        const [current, setCurrent] = useState(0)
+        const length = slidePictures.length //---Langueur de l'Array des images
+
+        //----Function nextSlide permet de changer l'image vers la droit---//
+        const nextSlide = () => {
+             
+            setCurrent(current === length - 1 ? 0 : current + 1)
+        }
+
+        //----Function prevuSlide permet de changer l'image vers la gauche---//
+        const prevuSlide = () => {
+            setCurrent(current === 0 ? length - 1 : current - 1)
+        }
         
         /*** Maper tags****/
         const tags = props.item.tags;
@@ -75,9 +84,18 @@ export default function MainLogement(props) {
         
         return (
                 <>
-                    <Carousel>
-                       {image}
-                    </Carousel>
+                    <div id="slider">
+                        <FontAwesomeIcon icon={faChevronLeft} className='left-arrow' onClick={prevuSlide} />
+                        <FontAwesomeIcon icon={faChevronRight} className='right-arrow' onClick={nextSlide} />
+                        {slidePictures.map((item, index) => {
+
+                            return (
+                                <div className={index === current ? 'slide active' : 'slide'} key={index}>
+                                    {index === current && <img className='loge--image' src={item} alt="les images de logement" />}
+                                </div>
+                            )
+                        })}
+                    </div>
                     <div className='informations'>
                         <div className='infos'>
                             <div className='titre'>
@@ -106,8 +124,8 @@ export default function MainLogement(props) {
                                 <div className="description" onClick={() => setShowChevron(!showChevron)}>
                                     <div onClick={() => setShowParagraphe(!showParagraphe)}>
                                         <div className='chevron'>
-                                            <p>Description</p> {showChevron && <Chevron direction={'down'} />}
-                                            {!showChevron && <Chevron direction={'up'} />}
+                                            <p>Description</p> {showChevron && <FontAwesomeIcon icon={faChevronDown} />}
+                                            {!showChevron && <FontAwesomeIcon icon={faChevronUp} />}
                                         </div>
                                         {showParagraphe && <p className='DescriptionParagraphe'>{props.item.description}</p>}
                                     </div>   
@@ -118,15 +136,14 @@ export default function MainLogement(props) {
                                 <div className='equipments' onClick={() => setShowChevronEquipement(!showChevronEquipement)} >
                                     <div onClick={() => setShowEquipements(!showEquipements)}>
                                         <div className="chevronEquipement">
-                                            <p>Equipements</p> {showChevronEquipement && <Chevron direction={'down'} />}
-                                            {!showChevronEquipement && <Chevron direction={'up'} />}
+                                            <p>Equipements</p> {showChevronEquipement && <FontAwesomeIcon icon={faChevronDown} />}
+                                            {!showChevronEquipement && <FontAwesomeIcon icon={faChevronUp} />}
                                         </div>
                                         {showEquipements && <div className='equipe'>{equipment}</div>}
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </>
             )
