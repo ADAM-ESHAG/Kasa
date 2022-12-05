@@ -155,6 +155,26 @@ html, body {
     
   }
   
+  /*----Debut (About) page---*/
+  .about--container {
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+  }
+  .about--container img {
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    object-fit: cover;
+    background-size: cover;
+    overflow: hidden;
+    
+  }
+
+
+  /*----Fin (About) page---*/
 
   /* Version tablette */
 @media only screen and (min-width: 768px){
@@ -179,6 +199,16 @@ html, body {
     top: 35%;
     left: 10%;
   }
+
+  /*----Debut (About) page----*/
+  .about--container {
+    margin: 0 50px;
+  }
+  .about--container img {
+    height: 300px;
+  }
+
+  /*----Fin (About) page ----*/
 
 }
 
@@ -234,12 +264,22 @@ html, body {
     }
     .description--equipments {
         display: flex;
-        justify-content: space-between;
-        
-        
+        justify-content: space-between;    
     }
     .desc, .equi {
-        width: 48%;
-        
+        width: 48%;        
     }
+
+    /*----Debut (About) page----*/
+    .about--container {
+      margin: 0 100px;
+    }
+    .about--container img {
+      height: 200px;
+    }
+    .about {
+      
+      margin: auto 100px;
+    }
+    /*----Fin (About) page ----*/
 }

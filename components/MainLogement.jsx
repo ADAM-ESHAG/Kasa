@@ -6,13 +6,6 @@ import { Link } from 'react-router-dom'
 import { useSearchParams } from "react-router-dom";
 import { useState } from 'react';
 
-//----Import Carousel From React-----//
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader  
-import { Carousel } from 'react-responsive-carousel';
-
-//---Import React-Chevron---//
-import Chevron from 'react-chevron'
-
 //----Import FontAwesomeIcon from React---//
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar} from '@fortawesome/free-regular-svg-icons'
@@ -30,9 +23,8 @@ export default function MainLogement(props) {
     const propsItemId = props.item.id;
     if(propsItemId === logementId){
 
-        /*****---- Maper les images de (props.item.pictures)----******/
+        /*****---- Pour pouvoir maper les images de (props.item.pictures)----******/
         let slidePictures = props.item.pictures;
-
         const [current, setCurrent] = useState(0)
         const length = slidePictures.length //---Langueur de l'Array des images
 
@@ -77,10 +69,10 @@ export default function MainLogement(props) {
             color:"#A9A9A9"
         }
         
-        const [showParagraphe, setShowParagraphe] = React.useState(false)
-        const [showEquipements, setShowEquipements] = React.useState(false)
-        const [showChevron, setShowChevron] = React.useState(false)
-        const [showChevronEquipement, setShowChevronEquipement ] = React.useState(false)
+        const [showParagraphe, setShowParagraphe] = useState(false)
+        const [showEquipements, setShowEquipements] = useState(false)
+        const [showChevron, setShowChevron] = useState(false)
+        const [showChevronEquipement, setShowChevronEquipement ] = useState(false)
         
         return (
                 <>
