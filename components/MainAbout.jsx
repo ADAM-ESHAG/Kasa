@@ -14,7 +14,7 @@ export default function MainAbout() {
     return (
         
             <div className='about--container'>
-                <img src={BackgroundImg} alt="image/webp" />
+                <div className='about--background'></div>
                 <div className='about'>
                     <div className="fiability">
                         <div className="description" onClick={() => setFiability(!fiability)}>

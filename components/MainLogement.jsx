@@ -1,6 +1,7 @@
 //-----MainLogement----//
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useParams } from 'react-router-dom';
 
 import { Link } from 'react-router-dom'
 import { useSearchParams } from "react-router-dom";
@@ -14,14 +15,13 @@ import { faChevronUp, faChevronDown, faChevronLeft, faChevronRight } from '@fort
 
 export default function MainLogement(props) {
 
-    /***---Recherche l'ID dans le URL de page Logement---***/
-    const search_params = new URLSearchParams(window.location.search);
-    const logementId = search_params.get("id"); 
-    
-    /*****---Si props.item.id égale à l'ID de logement 
-    cliqué ? Renoie-moi et affiche ces proprieté---****/
+    /***----useParams--***/
+    const params = useParams();
+     
+    /*****---Si props.item.id est égale à params.id de logement 
+    cliqué ? Renvoie-moi et affiche ces proprietés---****/
     const propsItemId = props.item.id;
-    if(propsItemId === logementId){
+    if(propsItemId === params.id){
 
         /*****---- Pour pouvoir maper les images de (props.item.pictures)----******/
         let slidePictures = props.item.pictures;
@@ -41,7 +41,6 @@ export default function MainLogement(props) {
         
         /*** Maper tags****/
         const tags = props.item.tags;
-
         const tag = tags.map(item => {
             return (
                 <span key={item} className='tag'>{item}</span>
@@ -52,7 +51,7 @@ export default function MainLogement(props) {
         const equipments= props.item.equipments
         const equipment = equipments.map(item => {
             return (
-                <span key={item}>{item}</span>
+                <span key={item} className='DescriptionParagraphe'>{item}</span>
             )
         })
 
@@ -69,10 +68,9 @@ export default function MainLogement(props) {
             color:"#A9A9A9"
         }
         
+        //---useState pour controller l'affichage des paragraphes, les chevron---//
         const [showParagraphe, setShowParagraphe] = useState(false)
         const [showEquipements, setShowEquipements] = useState(false)
-        const [showChevron, setShowChevron] = useState(false)
-        const [showChevronEquipement, setShowChevronEquipement ] = useState(false)
         
         return (
                 <>
@@ -113,11 +111,11 @@ export default function MainLogement(props) {
                         </div>
                         <div className='description--equipments'>
                             <div className='desc'>
-                                <div className="description" onClick={() => setShowChevron(!showChevron)}>
+                                <div className="description" onClick={() => setShowParagraphe(!showParagraphe)}>
                                     <div onClick={() => setShowParagraphe(!showParagraphe)}>
                                         <div className='chevron'>
-                                            <p>Description</p> {showChevron && <FontAwesomeIcon icon={faChevronDown} />}
-                                            {!showChevron && <FontAwesomeIcon icon={faChevronUp} />}
+                                            <p>Description</p> {showParagraphe && <FontAwesomeIcon icon={faChevronDown} />}
+                                            {!showParagraphe && <FontAwesomeIcon icon={faChevronUp} />}
                                         </div>
                                         {showParagraphe && <p className='DescriptionParagraphe'>{props.item.description}</p>}
                                     </div>   
@@ -125,11 +123,11 @@ export default function MainLogement(props) {
                             </div>
                             
                             <div className='equi'>
-                                <div className='equipments' onClick={() => setShowChevronEquipement(!showChevronEquipement)} >
+                                <div className='equipments' onClick={() => setShowEquipements(!showEquipements)} >
                                     <div onClick={() => setShowEquipements(!showEquipements)}>
                                         <div className="chevronEquipement">
-                                            <p>Equipements</p> {showChevronEquipement && <FontAwesomeIcon icon={faChevronDown} />}
-                                            {!showChevronEquipement && <FontAwesomeIcon icon={faChevronUp} />}
+                                            <p>Equipements</p> {showEquipements && <FontAwesomeIcon icon={faChevronDown} />}
+                                            {!showEquipements && <FontAwesomeIcon icon={faChevronUp} />}
                                         </div>
                                         {showEquipements && <div className='equipe'>{equipment}</div>}
                                     </div>
@@ -139,5 +137,5 @@ export default function MainLogement(props) {
                     </div>
                 </>
             )
-    }    
+    } 
 }
