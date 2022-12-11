@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 export default function Error() {
     return (
@@ -17,7 +17,7 @@ export default function Error() {
                     </div>
                 </div>
             </main>
-            
+            <Footer />
         </>
     )
 }

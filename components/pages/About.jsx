@@ -1,6 +1,6 @@
-import Navbar from "./Navbar"
-import MainAbout from "./MainAbout"
-import Footer from "./Footer"
+import Navbar from "../Navbar"
+import MainAbout from "../MainAbout"
+import Footer from "../Footer"
 
 export default function About() {
     return (

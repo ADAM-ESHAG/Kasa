@@ -1,30 +1,30 @@
 //-----MainLogement----//
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 import { Link } from 'react-router-dom'
 import { useSearchParams } from "react-router-dom";
 import { useState } from 'react';
+import Error from "./pages/Error"
+import Data from "../data"
+import { useNavigate } from "react-router-dom";
 
 //----Import FontAwesomeIcon from React---//
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar} from '@fortawesome/free-regular-svg-icons'
 import { faChevronUp, faChevronDown, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
+export default function MainLogement() {
 
-export default function MainLogement(props) {
-
-    /***----useParams--***/
+    //----useParams----//
     const params = useParams();
-     
-    /*****---Si props.item.id est égale à params.id de logement 
-    cliqué ? Renvoie-moi et affiche ces proprietés---****/
-    const propsItemId = props.item.id;
-    if(propsItemId === params.id){
+    
+    const affiche = Data.find(elem => elem.id === params.id);
+    if(affiche) {
 
-        /*****---- Pour pouvoir maper les images de (props.item.pictures)----******/
-        let slidePictures = props.item.pictures;
+        //---- Pour pouvoir maper les images de (props.item.pictures)----//
+        let slidePictures = affiche.pictures;
         const [current, setCurrent] = useState(0)
         const length = slidePictures.length //---Langueur de l'Array des images
 
@@ -39,24 +39,24 @@ export default function MainLogement(props) {
             setCurrent(current === 0 ? length - 1 : current - 1)
         }
         
-        /*** Maper tags****/
-        const tags = props.item.tags;
+        //---Maper tags----//
+        const tags = affiche.tags;
         const tag = tags.map(item => {
             return (
                 <span key={item} className='tag'>{item}</span>
             )
         })
 
-        /**** Maper éqipments ****/
-        const equipments= props.item.equipments
+        //---- Maper éqipments ----/
+        const equipments= affiche.equipments
         const equipment = equipments.map(item => {
             return (
                 <span key={item} className='DescriptionParagraphe'>{item}</span>
             )
         })
 
-        const rating = props.item.rating
-        /****Styles for stars****/
+        const rating = affiche.rating
+        //-----Styles for stars----/
         const styleStars = {
             size:"2xl",
             backgroundColor: "FF6060", 
@@ -89,8 +89,8 @@ export default function MainLogement(props) {
                     <div className='informations'>
                         <div className='infos'>
                             <div className='titre'>
-                                <h2>{props.item.title}</h2>
-                                <p>{props.item.location}</p>
+                                <h2>{affiche.title}</h2>
+                                <p>{affiche.location}</p>
                                 <div className='tags'>
                                     {tag}
                                 </div>
@@ -104,8 +104,8 @@ export default function MainLogement(props) {
                                     {rating == 5 ? <span><FontAwesomeIcon icon={faStar} size="lg" style={styleStars}/></span> : <span><FontAwesomeIcon icon={faStar} style={noStyleStars}/></span>}
                                 </div>
                                 <div className='host--name'>
-                                    <h6>{props.item.host.name}</h6>
-                                    <img src={props.item.host.picture} alt="Hot-Picture" />
+                                    <h6>{affiche.host.name}</h6>
+                                    <img src={affiche.host.picture} alt="Hot-Picture" />
                                 </div>
                             </div>
                         </div>
@@ -117,7 +117,7 @@ export default function MainLogement(props) {
                                             <p>Description</p> {showParagraphe && <FontAwesomeIcon icon={faChevronDown} />}
                                             {!showParagraphe && <FontAwesomeIcon icon={faChevronUp} />}
                                         </div>
-                                        {showParagraphe && <p className='DescriptionParagraphe'>{props.item.description}</p>}
+                                        {showParagraphe && <p className='DescriptionParagraphe'>{affiche.description}</p>}
                                     </div>   
                                 </div>
                             </div>
@@ -137,5 +137,8 @@ export default function MainLogement(props) {
                     </div>
                 </>
             )
-    } 
+    }
+    else {
+        return <Navigate to="Not Found 404"/>   
+    }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Home from '../components/Home'
+import Home from '../components/pages/Home'
 import App from './App'
 import './index.css'
 import './logement.css'
