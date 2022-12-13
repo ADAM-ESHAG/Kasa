@@ -2,7 +2,7 @@
   "name": "kasa",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://ADAM-ESHAG.github.io/kasa",
+  "homepage": "https://adam-eshag.github.io/kasa",
   "type": "module",
   "scripts": {
     "dev": "vite",
